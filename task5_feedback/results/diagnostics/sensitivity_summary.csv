@@ -1,0 +1,3 @@
+mechanism,S_reason,S_outcome,filler_clean_preference_rate,filler_wrong_preference_rate,gold_distractor_robustness
+RLVR_exact_verifier,0.0,1.0,0.0,0.0,1.0
+RLAIF_AI_judge,0.0,0.0,0.0,0.25,0.25

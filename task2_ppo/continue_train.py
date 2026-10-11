@@ -1,96 +1,65 @@
+# Name : Muhammad Danish Zaheer Awan
+# REG id : 25280092
+
+"""Command-line entry point for the standard PPO continuation."""
+
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
-from torch.optim import AdamW
-
-from common.data import load_yaml, prompt_messages, read_jsonl, repo_path
-from common.logging_utils import set_seed
-from common.models import (
-    load_policy,
-    load_reward_model,
-    load_tokenizer,
-    load_value_model,
-    trainable_parameters,
-    value_parameter_groups,
-)
+from common.data import load_yaml, repo_path
+from task2_ppo.core.paths import output_directory
+from task2_ppo.core.trainer import train_ppo_continuation
 
 
-def prepare_ppo_continuation(config_path: str):
-    cfg = load_yaml(config_path)
-    set_seed(int(cfg["seed"]))
-
-    tokenizer = load_tokenizer(cfg["base_model"])
-    policy = load_policy(
-        cfg,
-        adapter_path=cfg["paths"]["ppo_midpoint_policy"],
-        trainable=True,
-    )
-    value_model = load_value_model(
-        cfg,
-        cfg["paths"]["ppo_midpoint_value"],
-        train_mode=cfg.get("value_train_mode", "head_only"),
-    )
-    reward_model, reward_tokenizer = load_reward_model(cfg)
-    prompts = read_jsonl(cfg["paths"]["rl_prompt_train"])
-
-    policy_optimizer = AdamW(
-        trainable_parameters(policy),
-        lr=float(cfg["policy_learning_rate"]),
-    )
-    value_optimizer = AdamW(
-        value_parameter_groups(
-            value_model,
-            lora_lr=float(cfg["value_lora_learning_rate"]),
-            head_lr=float(cfg["value_head_learning_rate"]),
-        ),
-        weight_decay=0.0,
-    )
-
-    return {
-        "cfg": cfg,
-        "tokenizer": tokenizer,
-        "policy": policy,
-        "value_model": value_model,
-        "reward_model": reward_model,
-        "reward_tokenizer": reward_tokenizer,
-        "prompt_rows": prompts,
-        "policy_optimizer": policy_optimizer,
-        "value_optimizer": value_optimizer,
-    }
-
-
-def run_ppo(config_path: str, output: str | None = None, updates: int | None = None, clip_epsilon: float | None = None, kl_beta: float | None = None, run_name: str = "standard"):
-    bundle = prepare_ppo_continuation(config_path)
-    cfg = bundle["cfg"]
-    if updates is not None:
-        cfg["updates"] = int(updates)
-    if clip_epsilon is not None:
-        cfg["clip_epsilon"] = float(clip_epsilon)
-    if kl_beta is not None:
-        cfg["kl_beta"] = float(kl_beta)
-    out = repo_path(output or cfg["output"])
-    out.parent.mkdir(parents=True, exist_ok=True)
-
-    raise NotImplementedError(
-        "TODO(student): implement the 20-update PPO continuation from the supplied midpoint. "
-        "Your loop must collect on-policy rollouts, compute old/reference log-probs, learned reward, "
-        "KL-shaped rewards, GAE/returns, policy/value losses, clipping diagnostics, entropy, gradient norms, "
-        "response length, wall-clock time, and peak VRAM. Validate task2_ppo.ppo before running experiments."
+def run_ppo(
+    config_path: str = "configs/ppo.yaml",
+    output: str | None = None,
+    updates: int | None = None,
+    clip_epsilon: float | None = None,
+    kl_beta: float | None = None,
+    run_name: str = "standard",
+    overwrite: bool = False,
+) -> dict:
+    """Train or resume one PPO continuation using the shared pipeline."""
+    config = load_yaml(config_path)
+    expected_output = output_directory(config, run_name).resolve()
+    if output is not None and repo_path(output).resolve() != expected_output:
+        raise ValueError(
+            "Task 2 output locations are fixed by the run name. "
+            f"Expected {expected_output}."
+        )
+    return train_ppo_continuation(
+        config_path=config_path,
+        run_name=run_name,
+        updates=updates,
+        clip_epsilon=clip_epsilon,
+        kl_beta=kl_beta,
+        overwrite=overwrite,
     )
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/ppo.yaml")
-    ap.add_argument("--output")
-    ap.add_argument("--updates", type=int)
-    ap.add_argument("--clip-epsilon", type=float)
-    ap.add_argument("--kl-beta", type=float)
-    ap.add_argument("--run-name", default="standard")
-    args = ap.parse_args()
-    run_ppo(args.config, args.output, args.updates, args.clip_epsilon, args.kl_beta, args.run_name)
+def main() -> None:
+    """Parse command-line arguments and run PPO training."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", default="configs/ppo.yaml")
+    parser.add_argument("--output")
+    parser.add_argument("--updates", type=int)
+    parser.add_argument("--clip-epsilon", type=float)
+    parser.add_argument("--kl-beta", type=float)
+    parser.add_argument("--run-name", default="standard")
+    parser.add_argument("--overwrite", action="store_true")
+    args = parser.parse_args()
+    summary = run_ppo(
+        args.config,
+        args.output,
+        args.updates,
+        args.clip_epsilon,
+        args.kl_beta,
+        args.run_name,
+        args.overwrite,
+    )
+    print(summary)
 
 
 if __name__ == "__main__":

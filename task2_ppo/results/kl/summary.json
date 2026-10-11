@@ -1,0 +1,47 @@
+[
+  {
+    "run": "kl_beta_0.00",
+    "kl_beta": 0.0,
+    "updates": 8,
+    "maximum_generation_budget": 4096,
+    "generated_tokens": 2573,
+    "heldout_reward": 1.701126251220703,
+    "heldout_kl": -4.159365851151515e-05,
+    "heldout_entropy": 0.9993938052602871,
+    "heldout_response_length": 285.29,
+    "policy_loss_std": 0.00036682415098211,
+    "policy_gradient_norm_std": 0.6191261413617691,
+    "reward_step_change_std": 1.421578522883421,
+    "finite_metric_fraction": 1.0
+  },
+  {
+    "run": "kl_beta_0.10",
+    "kl_beta": 0.1,
+    "updates": 8,
+    "maximum_generation_budget": 4096,
+    "generated_tokens": 2573,
+    "heldout_reward": 1.6870240783691406,
+    "heldout_kl": -1.8523611741335274e-05,
+    "heldout_entropy": 1.020676669864806,
+    "heldout_response_length": 288.39,
+    "policy_loss_std": 0.0002193465718984954,
+    "policy_gradient_norm_std": 0.623169461903854,
+    "reward_step_change_std": 1.5404949297712405,
+    "finite_metric_fraction": 1.0
+  },
+  {
+    "run": "kl_beta_0.20",
+    "kl_beta": 0.2,
+    "updates": 8,
+    "maximum_generation_budget": 4096,
+    "generated_tokens": 2647,
+    "heldout_reward": 1.7005744934082032,
+    "heldout_kl": -1.0982051947496212e-05,
+    "heldout_entropy": 0.9974357095871705,
+    "heldout_response_length": 283.325,
+    "policy_loss_std": 0.00030032009914909873,
+    "policy_gradient_norm_std": 0.6411502267790671,
+    "reward_step_change_std": 1.4829559884066263,
+    "finite_metric_fraction": 1.0
+  }
+]

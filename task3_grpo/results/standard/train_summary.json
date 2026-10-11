@@ -1,0 +1,15 @@
+{
+  "run_name": "standard",
+  "loss_type": "grpo",
+  "updates": 20,
+  "prompts_per_update": 1,
+  "num_generations": 4,
+  "seed": 6304,
+  "generated_tokens": 24807,
+  "maximum_generation_budget": 40960,
+  "training_reward_device": "cpu",
+  "wall_time_seconds": 2350.2415498999762,
+  "peak_vram_gib": 3.847472667694092,
+  "policy_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task3_grpo\\outputs\\standard\\policy",
+  "policy_sha256": "b9d63bb4e26fe0cd1735e9887b213c8e26176ac324b92638c67c378d7e590211"
+}

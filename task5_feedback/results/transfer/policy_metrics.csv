@@ -1,0 +1,4 @@
+dataset,policy,example_count,exact_accuracy,format_compliance_rate,mean_response_length,response_length_std,response_length_iqr,truncated_fraction,ai_tournament_score,ai_win_rate_vs_sft,ai_tie_rate_vs_sft,ai_pairwise_score_vs_sft,verifier_judge_agreement_vs_sft,verifier_judge_decisive_agreement_vs_sft
+transfer,sft,100,0.44,0.57,163.57,71.81507571533989,79.25,0.0,0.485,,,,,
+transfer,rlvr,100,0.46,0.6,163.82,72.53307935004553,79.25,0.0,0.4925,0.11,0.81,0.515,0.81,0.5
+transfer,rlaif,100,0.44,0.57,165.1,75.08508507020552,79.25,0.0,0.5225,0.13,0.77,0.515,0.76,0.0

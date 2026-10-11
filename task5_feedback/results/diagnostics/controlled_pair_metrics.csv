@@ -1,0 +1,9 @@
+pair_category,mechanism,comparison_count,better_response_rate,tie_rate,wrong_preference_rate
+reasoning_only_corruption,RLVR_exact_verifier,20,0.0,1.0,0.0
+reasoning_only_corruption,RLAIF_AI_judge,20,0.0,1.0,0.0
+wrong_final,RLVR_exact_verifier,20,1.0,0.0,0.0
+wrong_final,RLAIF_AI_judge,20,0.0,1.0,0.0
+persuasive_filler,RLVR_exact_verifier,20,0.0,1.0,0.0
+persuasive_filler,RLAIF_AI_judge,20,0.0,0.75,0.25
+gold_distractor,RLVR_exact_verifier,20,1.0,0.0,0.0
+gold_distractor,RLAIF_AI_judge,20,0.25,0.7,0.05

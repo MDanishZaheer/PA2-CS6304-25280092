@@ -32,6 +32,9 @@ def load_tokenizer(model_id: str, padding_side: str = "left"):
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
     tok.padding_side = padding_side
+    # Causal-LM prompts must keep the most recent user turns and the final
+    # assistant-generation marker when they exceed the fixed prompt budget.
+    tok.truncation_side = "left"
     return tok
 
 
@@ -60,6 +63,31 @@ def make_value_lora_config(cfg: dict) -> LoraConfig:
     )
 
 
+def enable_training_memory_savings(model) -> None:
+    """Enable checkpointed gradients without changing trainable parameters."""
+    model.config.use_cache = False
+    if hasattr(model, "gradient_checkpointing_enable"):
+        try:
+            model.gradient_checkpointing_enable(
+                gradient_checkpointing_kwargs={"use_reentrant": False}
+            )
+        except TypeError:
+            model.gradient_checkpointing_enable()
+    if hasattr(model, "enable_input_require_grads"):
+        model.enable_input_require_grads()
+
+
+def promote_value_head(model) -> None:
+    """Keep the small trainable critic head in FP32 for stable AdamW steps."""
+    if hasattr(model, "score"):
+        head = model.score
+    elif hasattr(model, "classifier"):
+        head = model.classifier
+    else:
+        raise RuntimeError("Could not locate scalar value head")
+    head.to(dtype=torch.float32)
+
+
 def load_policy(cfg: dict, adapter_path: str | None = None, trainable: bool = False, fresh_lora: bool = False):
     dtype = resolve_dtype(cfg.get("dtype", "float16"))
     model = AutoModelForCausalLM.from_pretrained(
@@ -84,14 +112,7 @@ def load_policy(cfg: dict, adapter_path: str | None = None, trainable: bool = Fa
 
     if trainable:
         model.train()
-        model.config.use_cache = False
-        if hasattr(model, "gradient_checkpointing_enable"):
-            try:
-                model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
-            except TypeError:
-                model.gradient_checkpointing_enable()
-        if hasattr(model, "enable_input_require_grads"):
-            model.enable_input_require_grads()
+        enable_training_memory_savings(model)
     else:
         model.eval()
     return model
@@ -126,9 +147,20 @@ def _quant_config(bits: int | None, dtype):
     raise ValueError(bits)
 
 
-def load_reward_model(cfg: dict):
+def load_reward_model(cfg: dict, device: str = "auto"):
+    """Load the frozen reward model on CPU or on the best available device.
+
+    PPO training keeps both the policy and critic on a small GPU, so its reward
+    model is placed fully on CPU. Evaluation unloads the policy first and uses
+    the default ``auto`` placement, which keeps the quantized reward model on
+    the GPU when CUDA is available.
+    """
+    if device not in {"auto", "cpu"}:
+        raise ValueError(f"Unsupported reward-model device: {device!r}.")
     dtype = resolve_dtype(cfg.get("dtype", "float16"))
-    qcfg = _quant_config(8 if cfg.get("quantize_frozen_models", True) else None, dtype)
+    use_cpu = device == "cpu"
+    quantize = cfg.get("quantize_frozen_models", True) and not use_cpu
+    qcfg = _quant_config(8 if quantize else None, dtype)
     kwargs = {"num_labels": 1, "low_cpu_mem_usage": True}
     if qcfg is not None:
         kwargs.update({"quantization_config": qcfg, "device_map": "auto"})
@@ -136,7 +168,7 @@ def load_reward_model(cfg: dict):
         kwargs["dtype"] = dtype
 
     model = AutoModelForSequenceClassification.from_pretrained(cfg["reward_model"], **kwargs)
-    if qcfg is None and torch.cuda.is_available():
+    if not use_cpu and qcfg is None and torch.cuda.is_available():
         model = model.cuda()
 
     # The RM repository tokenizer was incompatible with the pinned Transformers build during
@@ -181,9 +213,11 @@ def load_value_model(cfg: dict, checkpoint: str, train_mode: str = "lora_head"):
     else:
         raise ValueError(f"Unknown value train_mode={train_mode!r}")
 
+    promote_value_head(model)
     if torch.cuda.is_available():
         model = model.cuda()
     model.train()
+    enable_training_memory_savings(model)
     return model
 
 
@@ -213,7 +247,15 @@ def value_parameter_groups(model, lora_lr: float, head_lr: float):
 
 
 def token_values(value_model, input_ids, attention_mask):
-    backbone = getattr(value_model, value_model.base_model_prefix)
+    # A PEFT sequence-classification model forwards unknown attributes through
+    # an extra wrapper. Resolve the underlying transformer explicitly so its
+    # classification head is not called before we cast hidden states to FP32.
+    sequence_model = (
+        value_model.get_base_model()
+        if isinstance(value_model, PeftModel)
+        else value_model
+    )
+    backbone = getattr(sequence_model, sequence_model.base_model_prefix)
     outputs = backbone(
         input_ids=input_ids,
         attention_mask=attention_mask,
@@ -228,7 +270,11 @@ def token_values(value_model, input_ids, attention_mask):
         head = value_model.classifier
     else:
         raise RuntimeError("Could not locate scalar value head")
-    return head(hidden).squeeze(-1)
+    head_dtype = next(
+        (parameter.dtype for parameter in head.parameters() if parameter.requires_grad),
+        next(head.parameters()).dtype,
+    )
+    return head(hidden.to(dtype=head_dtype)).squeeze(-1)
 
 
 def trainable_parameters(model):

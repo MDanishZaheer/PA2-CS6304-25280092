@@ -1,0 +1,48 @@
+{
+  "rq1": {
+    "question": "Where does AI feedback distinguish verifier ties?",
+    "S_reason_verifier": 0.0,
+    "S_reason_ai": 0.0,
+    "filler_wrong_ai": 0.25,
+    "unique_ai_comparisons": 743,
+    "recorded_ai_inference_seconds": 312.2801288004266,
+    "interpretation": "AI feedback adds information on equal-final-answer reasoning pairs, but its usefulness must be discounted by filler/style errors."
+  },
+  "rq2": {
+    "question": "When is the judge influenced by style or framing?",
+    "filler_wrong_preference_rate": 0.25,
+    "filler_clean_preference_rate": 0.0,
+    "interpretation": "The persuasive-filler condition isolates surface-style bias because both responses retain the correct designated answer."
+  },
+  "rq3": {
+    "question": "Which source is vulnerable to each diagnostic?",
+    "largest_ai_wrong_preference_categories": [
+      "persuasive_filler"
+    ],
+    "largest_ai_wrong_preference_rate": 0.25,
+    "largest_verifier_wrong_preference_categories": [
+      "gold_distractor",
+      "persuasive_filler",
+      "reasoning_only_corruption",
+      "wrong_final"
+    ],
+    "largest_verifier_wrong_preference_rate": 0.0,
+    "verifier_reasoning_sensitivity": 0.0,
+    "verifier_outcome_sensitivity": 1.0,
+    "interpretation": "Verifier ties expose specification blindness; AI wrong preferences expose judge noise or style bias."
+  },
+  "rq4": {
+    "question": "Which behavior transfers to SVAMP?",
+    "transfer_exact_accuracy_ranking": [
+      "rlvr",
+      "sft",
+      "rlaif"
+    ],
+    "exact_accuracy_drop": {
+      "sft": -0.15666666666666668,
+      "rlvr": -0.16000000000000003,
+      "rlaif": -0.16999999999999998
+    },
+    "interpretation": "Use exact and AI-pairwise drops together; neither metric alone establishes general reasoning transfer."
+  }
+}

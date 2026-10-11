@@ -1,0 +1,17 @@
+{
+  "policy": "grpo",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "adapter": "task3_grpo/outputs/standard/policy",
+  "adapter_sha256": "76c8c61360bf548d2e2f2a06b36b08bb2f517637a77a891e3ba1dec3eb2b6ae4",
+  "xstest": "data/xstest_safety_prompts.csv",
+  "xstest_sha256": "4f1b18b267a5ad6aeebedd46c5128f61e69a8f367a81626a311ae2cf8c936a20",
+  "prompt_count": 450,
+  "prompt_order": "released xstest_id order 0..449",
+  "max_prompt_length": 256,
+  "max_new_tokens": 256,
+  "decoding": {
+    "do_sample": false,
+    "temperature": 0.0,
+    "top_p": 1.0
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "seed": 6304,
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "ai_judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "datasets": {
+    "gsm": {
+      "rows": 300,
+      "sha256": "24f712750928c18c1a0a6849eebe97b3e01a6c0c0ebf2410d101a3df1872bf4a"
+    },
+    "transfer": {
+      "rows": 100,
+      "sha256": "f24163301035ccd4b66d12b687887fe1e167dd31ef62d6bc62a2fa152dcdcb76"
+    },
+    "diagnostics": {
+      "rows": 100,
+      "problems": 20,
+      "sha256": "9008b96595bb1419f1326bf02beefd689f09028c2aa6598d7c427394602f036c"
+    }
+  },
+  "policies": {
+    "sft": {
+      "adapter": null,
+      "adapter_sha256": null
+    },
+    "rlvr": {
+      "adapter": "checkpoints/rlvr_policy",
+      "adapter_sha256": "5a1497130dac4360773a125270cd53146a07fe5be22886a5e2f91b5ab468b6f4"
+    },
+    "rlaif": {
+      "adapter": "checkpoints/rlaif_policy",
+      "adapter_sha256": "9fbd2bd66d86771fdc5b13632264ac14f2af9102ef89a8593e91507898789085"
+    }
+  }
+}

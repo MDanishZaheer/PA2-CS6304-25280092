@@ -1,0 +1,4 @@
+run_name,loss_type,length_bin,lower_exclusive,upper_inclusive,completion_count,trainable_completion_count,mean_response_length,mean_reward,mean_absolute_advantage,mean_per_token_gradient_weight,mean_sequence_gradient_weight_proxy,truncated_fraction
+norm_dr_grpo,dr_grpo,short,0,170,13,13,56.23076923076923,1.6966083233173077,0.6776505384880763,0.001323536207984524,0.10855620494112372,0.0
+norm_dr_grpo,dr_grpo,medium,170,341,3,3,244.66666666666666,1.6351318359375,0.620083729426066,0.0012111010340352852,0.30195536216100055,0.0
+norm_dr_grpo,dr_grpo,long,341,512,16,3,503.0625,1.3225841522216797,0.9409722288449606,0.0018378363844628136,0.8633646965026855,0.8125

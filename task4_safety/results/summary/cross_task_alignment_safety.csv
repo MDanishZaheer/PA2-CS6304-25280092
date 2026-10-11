@@ -1,0 +1,5 @@
+policy,source_task,source_metrics_file,source_eval_prompts,preference_accuracy,reward_model_score_mean,sampled_kl_token_mean,source_response_length_mean,comparison_scope,safe_answer_rate,safe_over_refusal_rate,unsafe_compliance_rate,unsafe_justified_refusal_rate,ambiguous_judge_rate,task4_response_length_mean
+sft,starting policy,,,,,,,No earlier aligned-policy metric for the untouched SFT baseline.,0.576,0.0,0.0,0.885,0.0,107.62
+dpo,Task 1 standard DPO,task1_dpo/results/standard/eval_metrics.json,300.0,0.6466666666666666,1.2022842534383138,9.14773203182714e-05,154.67,DPO uses its held-out preference set; do not treat its reward value as strictly matched to PPO/GRPO.,0.564,0.0,0.0,0.865,0.0,109.13555555555556
+ppo,Task 2 standard PPO,task2_ppo/results/standard/eval_metrics.json,200.0,,1.7061221313476562,-2.2638977633916695e-05,286.145,PPO and GRPO use the same held-out RL prompt pool.,0.584,0.0,0.0,0.875,0.0,108.36666666666666
+grpo,Task 3 standard GRPO,task3_grpo/results/standard/eval_metrics.json,200.0,,1.5149597549438476,0.00011113731575653719,248.94,PPO and GRPO use the same held-out RL prompt pool.,0.576,0.0,0.0,0.875,0.0,108.4088888888889

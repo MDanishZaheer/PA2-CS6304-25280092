@@ -1,45 +1,38 @@
+# Name : Muhammad Danish Zaheer Awan
+# REG id : 25280092
+
+"""Run the fixed 100-response controlled feedback diagnostic study."""
+
 from __future__ import annotations
 
 import argparse
-from collections import defaultdict
 
-from common.data import load_yaml, read_jsonl
-from task5_feedback.rlvr import exact_reward
-from task5_feedback.rlaif import PairwiseAIJudge
-
-EXPECTED_VARIANTS = {
-    "clean_correct",
-    "corrupt_reasoning_correct_final",
-    "good_reasoning_wrong_final",
-    "persuasive_filler_correct",
-    "gold_distractor_wrong_final",
-}
+from common.data import load_yaml
+from task5_feedback.core.protocol import EXPECTED_VARIANTS
+from task5_feedback.evaluation.diagnostics import (
+    build_diagnostic_tables,
+    judge_diagnostic_pairs,
+    load_diagnostic_groups,
+)
 
 
-def load_diagnostic_groups(path):
-    rows = read_jsonl(path)
-    by_problem = defaultdict(dict)
-    for row in rows:
-        by_problem[str(row["problem_id"])][row["variant_type"]] = row
-    for pid, variants in by_problem.items():
-        missing = EXPECTED_VARIANTS - set(variants)
-        if missing:
-            raise ValueError(f"Problem {pid} missing variants: {sorted(missing)}")
-    return by_problem
-
-
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/feedback.yaml")
-    args = ap.parse_args()
-    cfg = load_yaml(args.config)
-    groups = load_diagnostic_groups(cfg["paths"]["task5_diagnostics"])
-    print("Diagnostic problems:", len(groups))
-    print("Variants/problem:", sorted(EXPECTED_VARIANTS))
-    print("Use exact_reward(...) for RLVR and PairwiseAIJudge(...) for RLAIF.")
-    raise NotImplementedError(
-        "TODO(student): implement the controlled-pair scoring, tie/wrong-preference rates, reasoning sensitivity, outcome sensitivity, filler susceptibility, and distractor robustness analyses."
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", default="configs/feedback.yaml")
+    parser.add_argument(
+        "--stage", choices=["all", "judge", "summarize"], default="all"
     )
+    parser.add_argument("--overwrite", action="store_true")
+    args = parser.parse_args()
+    config = load_yaml(args.config)
+    order, _ = load_diagnostic_groups(config)
+    print("Diagnostic problems:", len(order))
+    print("Variants/problem:", list(EXPECTED_VARIANTS))
+    if args.stage in {"all", "judge"}:
+        judge_diagnostic_pairs(config, overwrite=args.overwrite)
+    if args.stage in {"all", "summarize"}:
+        tables = build_diagnostic_tables(config)
+        print("Built diagnostic evidence:", ", ".join(sorted(tables)))
 
 
 if __name__ == "__main__":

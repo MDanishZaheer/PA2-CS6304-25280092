@@ -1,0 +1,17 @@
+{
+  "policy": "dpo",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "adapter": "task1_dpo/outputs/standard",
+  "adapter_sha256": "6bb151e1ab70ed78e4c27995f2fa82326803fce0adac16f8f8ee50e487a7f53a",
+  "xstest": "data/xstest_safety_prompts.csv",
+  "xstest_sha256": "4f1b18b267a5ad6aeebedd46c5128f61e69a8f367a81626a311ae2cf8c936a20",
+  "prompt_count": 450,
+  "prompt_order": "released xstest_id order 0..449",
+  "max_prompt_length": 256,
+  "max_new_tokens": 256,
+  "decoding": {
+    "do_sample": false,
+    "temperature": 0.0,
+    "top_p": 1.0
+  }
+}

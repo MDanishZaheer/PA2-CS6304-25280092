@@ -1,0 +1,11 @@
+variant_category,category_role,mechanism,comparison_count,better_response_rate,tie_rate,wrong_preference_rate
+clean_correct,reference aggregated over four perturbations,RLVR_exact_verifier,80,0.5,0.5,0.0
+corrupt_reasoning_correct_final,clean_correct is the diagnostically better response,RLVR_exact_verifier,20,0.0,1.0,0.0
+good_reasoning_wrong_final,clean_correct is the diagnostically better response,RLVR_exact_verifier,20,1.0,0.0,0.0
+persuasive_filler_correct,clean_correct is the diagnostically better response,RLVR_exact_verifier,20,0.0,1.0,0.0
+gold_distractor_wrong_final,clean_correct is the diagnostically better response,RLVR_exact_verifier,20,1.0,0.0,0.0
+clean_correct,reference aggregated over four perturbations,RLAIF_AI_judge,80,0.0625,0.8625,0.075
+corrupt_reasoning_correct_final,clean_correct is the diagnostically better response,RLAIF_AI_judge,20,0.0,1.0,0.0
+good_reasoning_wrong_final,clean_correct is the diagnostically better response,RLAIF_AI_judge,20,0.0,1.0,0.0
+persuasive_filler_correct,clean_correct is the diagnostically better response,RLAIF_AI_judge,20,0.0,0.75,0.25
+gold_distractor_wrong_final,clean_correct is the diagnostically better response,RLAIF_AI_judge,20,0.25,0.7,0.05

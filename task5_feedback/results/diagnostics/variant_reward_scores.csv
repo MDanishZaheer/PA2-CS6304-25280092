@@ -1,0 +1,6 @@
+variant_category,example_count,exact_reward_mean,exact_reward_std,ai_group_reward_mean,ai_group_reward_std,mean_response_words
+clean_correct,20,1.0,0.0,0.49375,0.08361930100162282,49.7
+corrupt_reasoning_correct_final,20,1.0,0.0,0.5,0.07905694150420949,49.7
+good_reasoning_wrong_final,20,0.0,0.0,0.475,0.049999999999999996,49.7
+persuasive_filler_correct,20,1.0,0.0,0.5875,0.13169567191065923,59.7
+gold_distractor_wrong_final,20,0.0,0.0,0.44375,0.13961442439805424,17.0

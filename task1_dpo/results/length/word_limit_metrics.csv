@@ -1,0 +1,3 @@
+policy,prompts,response_length_mean,response_length_std,word_limit_compliance
+standard,10,50.7,23.013257048927255,0.5
+length_balanced,10,49.5,16.070158679988197,0.3

@@ -1,0 +1,15 @@
+{
+  "run_name": "norm_dr_grpo",
+  "loss_type": "dr_grpo",
+  "updates": 8,
+  "prompts_per_update": 1,
+  "num_generations": 4,
+  "seed": 6304,
+  "generated_tokens": 9514,
+  "maximum_generation_budget": 16384,
+  "training_reward_device": "cpu",
+  "wall_time_seconds": 853.7609739000327,
+  "peak_vram_gib": 3.847419261932373,
+  "policy_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task3_grpo\\outputs\\norm_dr_grpo\\policy",
+  "policy_sha256": "4d3594941e1a516ed3ca3bac7e4bd96741954a8dbd2906ff2aa68ba9fdc030f9"
+}

@@ -1,0 +1,34 @@
+{
+  "run_name": "beta_0.30",
+  "adapter": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task1_dpo\\outputs\\beta_0.30",
+  "adapter_sha256": "e5ca7c5935cab5e29831383a3888b7d44530ea743b9e6f82047539b81644a17c",
+  "eval_data": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\data\\dpo_standard_eval.jsonl",
+  "beta": 0.3,
+  "seed": 6304,
+  "generation": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  },
+  "max_generation_tokens": 256,
+  "heldout_dpo_loss": 0.6807449448108673,
+  "preference_accuracy": 0.62,
+  "preference_pairs": 300,
+  "generated_prompts": 300,
+  "sampled_kl_token_mean": 6.029037371416981e-05,
+  "response_length_mean": 155.72,
+  "response_length_std": 105.76859143116793,
+  "response_length_iqr": 217.0,
+  "truncated_fraction": 0.4533333333333333,
+  "reward_model_score_mean": 1.1741603469848634,
+  "reference_reward_score_mean": 1.2074203236897787,
+  "reward_scoring": {
+    "reward_model": "yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback",
+    "reward_tokenizer": "Qwen/Qwen2.5-1.5B-Instruct",
+    "max_length": 1024,
+    "batch_size": 1,
+    "method": "each prompt-response pair is scored independently"
+  },
+  "reward_model_score_std": 1.4893642074072262,
+  "reference_reward_score_std": 1.4763389881697193
+}

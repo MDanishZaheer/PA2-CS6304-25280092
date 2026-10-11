@@ -1,57 +1,55 @@
+# Name : Muhammad Danish Zaheer Awan
+# REG id : 25280092
+
+"""Run one complete frozen-policy GSM8K or SVAMP evaluation."""
+
 from __future__ import annotations
 
 import argparse
 
-from common.data import load_yaml, read_jsonl
-from common.models import load_policy, load_tokenizer
-from task5_feedback.rlaif import PairwiseAIJudge
-from task5_feedback.rlvr import exact_reward
+from common.data import load_yaml
+from task5_feedback.core.paths import POLICY_ORDER
+from task5_feedback.core.protocol import load_math_rows
+from task5_feedback.evaluation.generation import generate_dataset_responses
+from task5_feedback.evaluation.math_metrics import build_math_tables
+from task5_feedback.evaluation.pairwise import judge_dataset_pairs
 
 
-def policy_specs(cfg):
-    return {
-        "sft": None,
-        "rlvr": cfg["policies"]["rlvr"],
-        "rlaif": cfg["policies"]["rlaif"],
-    }
-
-
-def dataset_path(cfg, dataset: str):
-    if dataset == "gsm":
-        return cfg["paths"]["gsm_eval"]
-    if dataset == "transfer":
-        return cfg["paths"]["math_transfer_eval"]
-    raise ValueError(dataset)
+def policy_specs(config: dict):
+    return {name: config["policies"][name] for name in POLICY_ORDER}
 
 
 def load_math_evaluation(config_path: str, dataset: str):
-    cfg = load_yaml(config_path)
-    rows = read_jsonl(dataset_path(cfg, dataset))
-    tokenizer = load_tokenizer(cfg["base_model"])
-    return cfg, rows, tokenizer
+    config = load_yaml(config_path)
+    return config, load_math_rows(config, dataset)
 
 
-def load_frozen_policy(cfg, name: str):
-    specs = policy_specs(cfg)
-    if name not in specs:
-        raise KeyError(name)
-    return load_policy(cfg, adapter_path=specs[name], trainable=False)
-
-
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="configs/feedback.yaml")
-    ap.add_argument("--dataset", choices=["gsm", "transfer"], default="gsm")
-    args = ap.parse_args()
-    cfg, rows, _ = load_math_evaluation(args.config, args.dataset)
-    print("Rows:", len(rows))
-    print("Policies:", list(policy_specs(cfg)))
-    print("Exact verifier available as task5_feedback.rlvr.exact_reward")
-    print("Pairwise judge available as task5_feedback.rlaif.PairwiseAIJudge")
-    raise NotImplementedError(
-        "TODO(student): generate matched SFT/RLVR/RLAIF responses, compute exact accuracy/format/length, "
-        "apply the fixed AI judge for the requested pairwise comparison, and save machine-readable results."
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", default="configs/feedback.yaml")
+    parser.add_argument("--dataset", choices=["gsm", "transfer"], default="gsm")
+    parser.add_argument(
+        "--stage",
+        choices=["all", "generate", "judge", "summarize"],
+        default="all",
     )
+    parser.add_argument("--batch-size", type=int)
+    parser.add_argument("--overwrite", action="store_true")
+    args = parser.parse_args()
+    config = load_yaml(args.config)
+
+    if args.stage in {"all", "generate"}:
+        generate_dataset_responses(
+            config,
+            args.dataset,
+            batch_size=args.batch_size,
+            overwrite=args.overwrite,
+        )
+    if args.stage in {"all", "judge"}:
+        judge_dataset_pairs(config, args.dataset, overwrite=args.overwrite)
+    if args.stage in {"all", "summarize"}:
+        tables = build_math_tables(config, args.dataset)
+        print(f"Built {args.dataset} evidence:", ", ".join(sorted(tables)))
 
 
 if __name__ == "__main__":

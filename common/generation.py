@@ -54,6 +54,10 @@ def batch_generate(
 
     with torch.inference_mode():
         seq = model.generate(**enc, **kwargs)
+    # Generated tensors created inside inference_mode cannot participate in a
+    # later PPO autograd graph. Clone after leaving the context to make a normal
+    # tensor while keeping generation itself gradient-free.
+    seq = seq.detach().clone()
     if was_training:
         model.train()
 

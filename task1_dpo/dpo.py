@@ -1,3 +1,8 @@
+# Name : Muhammad Danish Zaheer Awan
+# REG id : 25280092
+
+"""Calculate the DPO objective from response-only sequence log-probabilities."""
+
 from __future__ import annotations
 
 import torch
@@ -11,19 +16,25 @@ def dpo_loss(
     ref_rejected_logp: torch.Tensor,
     beta: float,
 ):
-    """Return scalar DPO loss plus lightweight diagnostics.
-
-    Validate this implementation against the equation in the assignment manual before using it.
-    """
+    """Return the DPO loss and reference-relative preference diagnostics."""
+    if beta <= 0:
+        raise ValueError("DPO beta must be positive.")
+    if not (
+        policy_chosen_logp.shape
+        == policy_rejected_logp.shape
+        == ref_chosen_logp.shape
+        == ref_rejected_logp.shape
+    ):
+        raise ValueError("Chosen and rejected log-probability tensors must have matching shapes.")
     policy_margin = policy_chosen_logp - policy_rejected_logp
     ref_margin = ref_chosen_logp - ref_rejected_logp
-
-    # Starter implementation: students must validate the objective carefully.
-    logits = beta * (policy_margin + ref_margin)
+    preference_margin = policy_margin - ref_margin
+    logits = beta * preference_margin
 
     loss = -F.logsigmoid(logits).mean()
     return loss, {
         "logit_mean": logits.detach().mean(),
         "policy_margin_mean": policy_margin.detach().mean(),
-        "preference_accuracy": (policy_margin > 0).float().mean().detach(),
+        "preference_margin_mean": preference_margin.detach().mean(),
+        "preference_accuracy": (preference_margin > 0).float().mean().detach(),
     }

@@ -1,0 +1,19 @@
+{
+  "run_name": "clip_eps_0.05",
+  "updates": 8,
+  "prompts_per_update": 1,
+  "ppo_epochs": 2,
+  "clip_epsilon": 0.05,
+  "kl_beta": 0.1,
+  "training_reward_device": "cpu",
+  "training_reward_quantized": false,
+  "seed": 6304,
+  "generated_tokens": 2573,
+  "maximum_generation_budget": 4096,
+  "wall_time_seconds": 334.9105583000055,
+  "peak_vram_gib": 4.776301860809326,
+  "policy_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task2_ppo\\outputs\\clip_eps_0.05\\policy",
+  "value_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task2_ppo\\outputs\\clip_eps_0.05\\value",
+  "policy_sha256": "1918a37ad097b399052603479efd0ef71bbcc6ec3a3e32e261833081c1dfec65",
+  "value_sha256": "3105eadfa7e9701f2ddc2eda495cbdcf6e70f2089ae7885521d448175e01cd0c"
+}

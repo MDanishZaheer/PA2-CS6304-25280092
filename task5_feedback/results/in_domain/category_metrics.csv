@@ -1,0 +1,4 @@
+policy,category,example_count,exact_accuracy,format_compliance_rate,mean_response_length
+rlaif,GSM8K,300,0.27,0.34,274.1533333333333
+rlvr,GSM8K,300,0.3,0.37666666666666665,273.98333333333335
+sft,GSM8K,300,0.2833333333333333,0.3566666666666667,275.05

@@ -1,14 +1,26 @@
 base_config: configs/base.yaml
 results_dir: results
+task4_output_dir: task4_safety/outputs
+task4_results_dir: task4_safety/results
+task5_output_dir: task5_feedback/outputs
+task5_results_dir: task5_feedback/results
 safety_max_new_tokens: 256
+task4_max_prompt_length: 256
+task4_generation_batch_size: 4
 math_max_new_tokens: 512
+task5_max_prompt_length: 256
+task5_generation_batch_size: 2
+task5_judge_max_input_length: 2048
+task5_judge_max_new_tokens: 4
 judge_max_new_tokens: 64
+judge_max_input_length: 1024
+judge_batch_size: 4
 judge_temperature: 0.0
 manual_audit_per_class: 30
 policies:
   sft: null
-  dpo: outputs/task1_dpo/standard
-  ppo: outputs/task2_ppo/standard
-  grpo: outputs/task3_grpo/standard
+  dpo: task1_dpo/outputs/standard
+  ppo: task2_ppo/outputs/standard/policy
+  grpo: task3_grpo/outputs/standard/policy
   rlvr: checkpoints/rlvr_policy
   rlaif: checkpoints/rlaif_policy

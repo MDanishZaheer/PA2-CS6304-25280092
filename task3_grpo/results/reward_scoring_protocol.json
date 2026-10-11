@@ -1,0 +1,12 @@
+{
+  "reward_model": "yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback",
+  "reward_tokenizer": "Qwen/Qwen2.5-1.5B-Instruct",
+  "max_length": 1024,
+  "batch_size": 1,
+  "truncation_side": "left",
+  "device_placement": "auto",
+  "quantized_on_cuda": true,
+  "method": "each prompt-response pair is scored independently",
+  "protocol_sha256": "f85f76672846f0a6d780c9adcb79b72e32cd3a0ab4de660e607bd467357414df",
+  "cache_file": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task3_grpo\\results\\reward_score_cache.jsonl"
+}

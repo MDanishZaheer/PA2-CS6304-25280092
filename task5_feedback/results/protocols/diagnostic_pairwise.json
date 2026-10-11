@@ -1,0 +1,17 @@
+{
+  "diagnostic_sha256": "9008b96595bb1419f1326bf02beefd689f09028c2aa6598d7c427394602f036c",
+  "problems": 20,
+  "variants": [
+    "clean_correct",
+    "corrupt_reasoning_correct_final",
+    "good_reasoning_wrong_final",
+    "persuasive_filler_correct",
+    "gold_distractor_wrong_final"
+  ],
+  "comparison_count": 200,
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "rubric_sha256": "ed8b061fbb49f09fa68cf631893196b9ae2f5bbe4f007b0ae7b06dcd7e104df9",
+  "orientation": "released deterministic SHA-256 A/B balancing",
+  "max_input_length": 2048,
+  "max_new_tokens": 4
+}

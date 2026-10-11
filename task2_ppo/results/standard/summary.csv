@@ -1,0 +1,2 @@
+run,updates,maximum_generation_budget,generated_tokens,clip_epsilon,kl_beta,heldout_reward,heldout_kl,heldout_entropy,heldout_response_length,peak_vram_gib,wall_time_seconds
+standard,20,10240,6622,0.2,0.1,1.7061221313476562,-2.2638977633916695e-05,0.9991158035629735,286.145,4.784282684326172,845.9937174000079

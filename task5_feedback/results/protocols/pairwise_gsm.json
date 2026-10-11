@@ -1,0 +1,19 @@
+{
+  "dataset": "gsm",
+  "comparison_count": 900,
+  "pair_order": [
+    "rlvr_vs_sft",
+    "rlaif_vs_sft",
+    "rlaif_vs_rlvr"
+  ],
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "rubric_sha256": "ed8b061fbb49f09fa68cf631893196b9ae2f5bbe4f007b0ae7b06dcd7e104df9",
+  "orientation": "released deterministic SHA-256 A/B balancing",
+  "max_input_length": 2048,
+  "max_new_tokens": 4,
+  "response_files": {
+    "sft": "632b6f2334208046b0d5d50dcd4c3c1cd38cef53ad4323a7bdb456e1cf1cacfa",
+    "rlvr": "cc5547d5a0ef96494feafc16175a2435907c173b888d4f0351edc687b5cc5075",
+    "rlaif": "0d5249a6fea01c0a7e426b000792310c8225dfe00372ee0c41d03f927c52276e"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "updates": 20,
+  "generated_tokens": 24807,
+  "mean_uninformative_group_fraction": 0.05,
+  "mean_truncated_completion_fraction": 0.325,
+  "informative_groups_across_updates": 19.0,
+  "generated_tokens_per_informative_group": 1305.6315789473683,
+  "within_group_reward_std_cv": 0.8992891118562373,
+  "gradient_norm_cv": 1.0359877244773632,
+  "policy_loss_standard_deviation": 0.16634872713361504,
+  "reward_standard_deviation_across_updates": 1.0004033514053037,
+  "note": "These are candidate mechanisms for RQ3. The student should identify the dominant one only after comparing the numerical evidence and examples."
+}

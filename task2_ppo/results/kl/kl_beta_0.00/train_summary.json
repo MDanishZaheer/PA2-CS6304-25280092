@@ -1,0 +1,19 @@
+{
+  "run_name": "kl_beta_0.00",
+  "updates": 8,
+  "prompts_per_update": 1,
+  "ppo_epochs": 2,
+  "clip_epsilon": 0.2,
+  "kl_beta": 0.0,
+  "training_reward_device": "cpu",
+  "training_reward_quantized": false,
+  "seed": 6304,
+  "generated_tokens": 2573,
+  "maximum_generation_budget": 4096,
+  "wall_time_seconds": 571.3238905000035,
+  "peak_vram_gib": 4.776301860809326,
+  "policy_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task2_ppo\\outputs\\kl_beta_0.00\\policy",
+  "value_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task2_ppo\\outputs\\kl_beta_0.00\\value",
+  "policy_sha256": "d2753e3bd369a959ad4a3afbb28c498b0e2ab26bcc50af66c766b02b31d638a6",
+  "value_sha256": "587ebeaf0a13696823c51a62200fcc690f80660c1c2216790773832ccbf7a50d"
+}

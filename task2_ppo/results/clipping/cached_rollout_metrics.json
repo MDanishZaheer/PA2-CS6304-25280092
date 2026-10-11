@@ -1,0 +1,38 @@
+[
+  {
+    "clip_epsilon": 0.05,
+    "cached_responses": 32,
+    "cached_response_tokens": 8814,
+    "clipped_surrogate": -0.015059191733598709,
+    "clip_fraction": 0.16723394393920898,
+    "affected_token_fraction": 0.08100748807191849,
+    "ratio_mean": 0.9993261098861694,
+    "ratio_std": 0.5192816853523254,
+    "ratio_min": 2.0091958319312653e-08,
+    "ratio_max": 32.8025016784668
+  },
+  {
+    "clip_epsilon": 0.2,
+    "cached_responses": 32,
+    "cached_response_tokens": 8814,
+    "clipped_surrogate": -0.010964175686240196,
+    "clip_fraction": 0.0558202862739563,
+    "affected_token_fraction": 0.026662128046154976,
+    "ratio_mean": 0.9993261098861694,
+    "ratio_std": 0.5192816853523254,
+    "ratio_min": 2.0091958319312653e-08,
+    "ratio_max": 32.8025016784668
+  },
+  {
+    "clip_epsilon": 0.5,
+    "cached_responses": 32,
+    "cached_response_tokens": 8814,
+    "clipped_surrogate": -0.007210819516330957,
+    "clip_fraction": 0.030179260298609734,
+    "affected_token_fraction": 0.014408894814550877,
+    "ratio_mean": 0.9993261098861694,
+    "ratio_std": 0.5192816853523254,
+    "ratio_min": 2.0091958319312653e-08,
+    "ratio_max": 32.8025016784668
+  }
+]

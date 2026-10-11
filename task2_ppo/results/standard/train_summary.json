@@ -1,0 +1,19 @@
+{
+  "run_name": "standard",
+  "updates": 20,
+  "prompts_per_update": 1,
+  "ppo_epochs": 2,
+  "clip_epsilon": 0.2,
+  "kl_beta": 0.1,
+  "training_reward_device": "cpu",
+  "training_reward_quantized": false,
+  "seed": 6304,
+  "generated_tokens": 6622,
+  "maximum_generation_budget": 10240,
+  "wall_time_seconds": 845.9937174000079,
+  "peak_vram_gib": 4.784282684326172,
+  "policy_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task2_ppo\\outputs\\standard\\policy",
+  "value_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task2_ppo\\outputs\\standard\\value",
+  "policy_sha256": "c09b857e1e17681b1da31b2a2f610314c3996e6d42e172919ac1be0de151e7be",
+  "value_sha256": "ef41c56c2612d6a30cd52ea0e5eb3ad77352974cdab8f5ae09014956ae8fa8d9"
+}

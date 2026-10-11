@@ -1,0 +1,51 @@
+{
+  "run_name": "norm_canonical",
+  "loss_type": "grpo",
+  "seed": 6304,
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "reward_model": "yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback",
+  "reward_tokenizer": "Qwen/Qwen2.5-1.5B-Instruct",
+  "dtype": "float16",
+  "training_reward_device": "cpu",
+  "training_reward_quantized": false,
+  "midpoint_policy": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\checkpoints\\grpo_midpoint_policy",
+  "midpoint_policy_sha256": "0f4e3f715583470267d1d0180e58fc807ff73458faa906c299ac64ab90c24b33",
+  "output_directory": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task3_grpo\\outputs\\norm_canonical",
+  "updates": 8,
+  "prompts_per_update": 1,
+  "policy_epochs": 1,
+  "num_generations": 4,
+  "prompt_ids": [
+    "69dbb0920f2b515bc35d2b6d696bfb9d4f4fb5733a611ad26fbd6a994aa33c4c",
+    "d17a75fdbc3cf38ce6c717882a414230fb52cd262bbaa2cc1042706afba74208",
+    "8d7186b5e1fbe09683b2c5a16f4e6895e823fe819bb3fb42f0a335b773b558cc",
+    "babd2b9209530cad5e8c5de713fa65a2a19e2a5e1d883d4b519b5da9281846b7",
+    "042952501bc0bccb277c5acae15dc57a22f0486f84751a659dc7118bc2da0a7a",
+    "2dcb5c70b61397d22dff7ecba3c97f0963f338ac00f80e6a50bb19f953cd2be6",
+    "567f7fcc3da0de0f654935d95d5183defdf51ed4a54cabdec8c1af9d657ab73c",
+    "2eb0508423860573c279e4e2f78e0f251bc5ffc061d5f4fe613516eb01c66a56"
+  ],
+  "prompt_pool_sha256": "633d500194260bbba777049f82d7c179410998d36eba2259d6e47440661cbb69",
+  "learning_rate": 5e-06,
+  "clip_epsilon": 0.2,
+  "kl_beta": 0.1,
+  "max_grad_norm": 1.0,
+  "max_prompt_length": 256,
+  "max_completion_length": 512,
+  "mask_truncated_completions": true,
+  "reward_max_length": 1024,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "generation": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  }
+}

@@ -12,7 +12,7 @@ max_prompt_length: 256
 max_completion_length: 512
 mask_truncated_completions: true
 max_grad_norm: 1.0
-output: outputs/task3_grpo/standard
-results_dir: results/task3_grpo
+output: task3_grpo/outputs/standard
+results_dir: task3_grpo/results
 group_cache: cached/grpo_k_cache.jsonl
 cache_generation_cap: 768

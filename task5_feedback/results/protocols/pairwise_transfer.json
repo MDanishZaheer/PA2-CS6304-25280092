@@ -1,0 +1,19 @@
+{
+  "dataset": "transfer",
+  "comparison_count": 300,
+  "pair_order": [
+    "rlvr_vs_sft",
+    "rlaif_vs_sft",
+    "rlaif_vs_rlvr"
+  ],
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "rubric_sha256": "ed8b061fbb49f09fa68cf631893196b9ae2f5bbe4f007b0ae7b06dcd7e104df9",
+  "orientation": "released deterministic SHA-256 A/B balancing",
+  "max_input_length": 2048,
+  "max_new_tokens": 4,
+  "response_files": {
+    "sft": "d88c081000cb0afe4cc47402b5f8772aa0eb7fd8a5b7f4f89f44f433eb2858ad",
+    "rlvr": "a380c871e776ab22792d3e9af0684fb3d4822a432113b528d205bec470d069ee",
+    "rlaif": "f0c597a1e976186e62454999ac27b14ad3901227dca90074774de7e48c2d4dba"
+  }
+}

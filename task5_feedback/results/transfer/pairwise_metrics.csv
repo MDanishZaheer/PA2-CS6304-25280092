@@ -1,0 +1,4 @@
+dataset,pair_name,candidate_a,candidate_b,comparison_count,judge_a_rate,judge_b_rate,judge_tie_rate,judge_score_for_a,verifier_a_rate,verifier_b_rate,verifier_tie_rate,verifier_judge_agreement,agreement_when_verifier_decisive,judge_breaks_verifier_tie_rate
+transfer,rlvr_vs_sft,rlvr,sft,100,0.11,0.08,0.81,0.515,0.02,0.0,0.98,0.81,0.5,0.1836734693877551
+transfer,rlaif_vs_sft,rlaif,sft,100,0.13,0.1,0.77,0.515,0.01,0.01,0.98,0.76,0.0,0.22448979591836735
+transfer,rlaif_vs_rlvr,rlaif,rlvr,100,0.14,0.08,0.78,0.53,0.01,0.03,0.96,0.76,0.0,0.20833333333333334

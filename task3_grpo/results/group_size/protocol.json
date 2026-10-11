@@ -1,0 +1,18 @@
+{
+  "cache": "cached/grpo_k_cache.jsonl",
+  "cache_sha256": "d43024a41301a0b1de63d9bce3f484f8259263dd6495253dd52fecaf73fbbf9c",
+  "prompt_pool": "data/rl_prompt_pool_eval.jsonl",
+  "prompt_pool_sha256": "37051939db20699dff7ec9110599cdb3854890ad9ce700d310715a0784b32a83",
+  "cached_prompts": 24,
+  "cached_completions": 192,
+  "group_sizes": [
+    2,
+    4,
+    8
+  ],
+  "regrouping": "consecutive generation_index chunks within each prompt",
+  "equal_completion_budget_per_k": 192,
+  "informative_tolerance": 1e-06,
+  "relative_signal": "within-group population-std standardized reward",
+  "difficulty_rule_file": "task3_grpo/results/group_size/difficulty_bins.json"
+}

@@ -1,0 +1,25 @@
+{
+  "seed": 6304,
+  "xstest_rows": 450,
+  "safe_prompts": 250,
+  "unsafe_prompts": 200,
+  "xstest_sha256": "4f1b18b267a5ad6aeebedd46c5128f61e69a8f367a81626a311ae2cf8c936a20",
+  "policies": {
+    "sft": {
+      "adapter": null,
+      "adapter_sha256": null
+    },
+    "dpo": {
+      "adapter": "task1_dpo/outputs/standard",
+      "adapter_sha256": "6bb151e1ab70ed78e4c27995f2fa82326803fce0adac16f8f8ee50e487a7f53a"
+    },
+    "ppo": {
+      "adapter": "task2_ppo/outputs/standard/policy",
+      "adapter_sha256": "52483ed72f50775354dde225f2200d45932de1eae50095149aa86b18a52a4a8b"
+    },
+    "grpo": {
+      "adapter": "task3_grpo/outputs/standard/policy",
+      "adapter_sha256": "76c8c61360bf548d2e2f2a06b36b08bb2f517637a77a891e3ba1dec3eb2b6ae4"
+    }
+  }
+}

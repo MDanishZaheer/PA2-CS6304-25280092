@@ -1,0 +1,12 @@
+{
+  "run_name": "standard",
+  "adapter_dir": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task1_dpo\\outputs\\standard",
+  "training_examples": 1500,
+  "updates": 94,
+  "beta": 0.1,
+  "seed": 6304,
+  "wall_time_seconds": 1724.1700370000035,
+  "peak_vram_gib": 4.303071022033691,
+  "last_update_loss": 0.6536988218625387,
+  "adapter_sha256": "c920d63d334eb5702e3f3e24e804267d1592c50318bb893f5bc182736386ca56"
+}

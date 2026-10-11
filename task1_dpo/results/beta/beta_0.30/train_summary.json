@@ -1,0 +1,12 @@
+{
+  "run_name": "beta_0.30",
+  "adapter_dir": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task1_dpo\\outputs\\beta_0.30",
+  "training_examples": 600,
+  "updates": 38,
+  "beta": 0.3,
+  "seed": 6304,
+  "wall_time_seconds": 621.0139647999895,
+  "peak_vram_gib": 4.304656028747559,
+  "last_update_loss": 0.656031459569931,
+  "adapter_sha256": "e5ca7c5935cab5e29831383a3888b7d44530ea743b9e6f82047539b81644a17c"
+}

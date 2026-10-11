@@ -38,4 +38,5 @@ data/*
 
 # .pdfs and .doc
 *.pdf
-*.doc
+*.docx
+

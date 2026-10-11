@@ -10,6 +10,6 @@ short_ablation_examples: 600
 max_sequence_length: 768
 max_generation_tokens: 256
 max_grad_norm: 1.0
-standard_output: outputs/task1_dpo/standard
-length_output: outputs/task1_dpo/length_balanced
-results_dir: results/task1_dpo
+standard_output: task1_dpo/outputs/standard
+length_output: task1_dpo/outputs/length_balanced
+results_dir: task1_dpo/results

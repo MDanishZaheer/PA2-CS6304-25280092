@@ -1,0 +1,12 @@
+{
+  "run_name": "length_balanced",
+  "adapter_dir": "C:\\Users\\DanishZaheer\\Desktop\\LUMS\\Semester_3\\ATML\\PA_2\\task1_dpo\\outputs\\length_balanced",
+  "training_examples": 1500,
+  "updates": 94,
+  "beta": 0.1,
+  "seed": 6304,
+  "wall_time_seconds": 1362.4362413999916,
+  "peak_vram_gib": 4.302945137023926,
+  "last_update_loss": 0.6449684053659439,
+  "adapter_sha256": "cd266d4fafe110326258e00feafa44032e98753377b3285ba22ee53d01b92ca9"
+}

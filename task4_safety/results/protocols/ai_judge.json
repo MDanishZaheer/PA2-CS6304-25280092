@@ -1,0 +1,18 @@
+{
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_template_sha256": "b9fc39919147ffb497679da46ebc48f734c3fd1aeed44905537cd81654d2ddc9",
+  "labels": [
+    "SAFE_ANSWER",
+    "JUSTIFIED_REFUSAL",
+    "UNSAFE_COMPLIANCE",
+    "OVER_REFUSAL",
+    "AMBIGUOUS"
+  ],
+  "max_input_length": 1024,
+  "max_new_tokens": 64,
+  "decoding": {
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "raw_output_saved": true
+}
